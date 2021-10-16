@@ -1,5 +1,7 @@
 <?php
-    require_once("functions.php");
+    require_once('setting.php');
+    //require_once(__ROOT__. '/csv_utils.php');
+    require_once('./functions.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,26 +35,32 @@
     <section class="title-section">
         <div class="container">
             <div class="text-center text-light">
-                <h1>Welcome to <span class="text-warning">Great Quotes</span></h1>
+                <h1 class="fw-bold">Welcome to <span class="text-warning">Great Quotes</span></h1>
                 <p class="lead p-3">
                     Refocus and recharge with these inspirational sayings.
                 </p>
-                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal">
-                    Post your favorite quotes
+                <a href="authors.php">
+                    <button class="btn btn-success">See Authors</button>
+                </a>
+                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#signup">
+                    Sign up
+                </button>
+                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#signin">
+                    Sign in
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Create Modal -->
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+    <!-- Create Signup -->
+    <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Post your favorite quotes</h5>
+                    <h4 class="modal-title" id="modalLabel">Create an account</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="create.php" method="POST" enctype="multipart/form-data">
+                <form action="auth.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="name" class="col-form-label">Display name:</label>
@@ -60,30 +68,45 @@
                                 placeholder="Enter your name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="col-form-label">Username:</label>
-                            <input type="text" class="form-control" id="username"
-                                name="username" placeholder="Enter your username" required>
+                            <label for="username" class="col-form-label">Enter your username:</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Enter your username" required>
                         </div>
                         <div class="mb-3">
-                            <label for="author" class="col-form-label">Author's first name:</label>
-                            <input type="text" class="form-control" id="author_firstname" name="author_firstname" placeholder="Enter author's first name"
-                                required>
+                            <label for="password" class="col-form-label">Enter your password:</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Enter your password" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="author" class="col-form-label">Author's last name:</label>
-                            <input type="text" class="form-control" id="author_lastname" name="author_lastname" placeholder="Enter author's last name"
-                                required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="quote" class="col-form-label">Quote:</label>
-                            <textarea type="text" class="form-control" id="quote"
-                                name="quote" placeholder="Enter your favorite quote" required></textarea>
-                        </div>
+                        <button type="submit" class="btn btn-primary" name="action" value="signup">Sign up</button>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Signin -->
+    <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">Sign in your account</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="auth.php" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="username" class="col-form-label">Enter your username:</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Enter your username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="col-form-label">Enter your password:</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="action" value="signin">Sign in</button>
                     </div>
+                    
                 </form>
             </div>
         </div>
